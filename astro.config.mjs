@@ -1,7 +1,11 @@
-import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
+import tailwind from '@astrojs/tailwind'
+import { defineConfig } from 'astro/config'
+import rehypeKatex from 'rehype-katex'
+import rehypeMath from 'rehype-math'
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()]
-});
+    integrations: [tailwind()],
+    markdown: {
+        rehypePlugins: [rehypeMath, rehypeKatex]
+    }
+})

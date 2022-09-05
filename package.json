@@ -10,7 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.1.5"
+    "astro": "^1.1.5",
+    "rehype-katex": "^6.0.2",
+    "rehype-math": "^0.2.0"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^1.0.0"
