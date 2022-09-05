@@ -3,6 +3,9 @@ import Container from '../components/Container.astro'
 import Footer from '../components/Footer.astro'
 import Logo from '../components/Logo.astro'
 import Layout from '../layouts/Layout.astro'
+import { shuffle, unsluggify } from '../scripts'
+
+const proofs = await Astro.glob('./proofs/*.md')
 ---
 
 <Layout
@@ -51,6 +54,72 @@ import Layout from '../layouts/Layout.astro'
                 </form>
             </div>
         </Container>
+
+        <!-- Categories section -->
+        <div class="py-32 md:pt-16 md:pb-8 bg-stone-100">
+            <Container>
+                <h3 class="mb-16 text-4xl font-medium md:text-3xl">Proofs By Category</h3>
+
+                <div class="grid grid-cols-2 md:grid-cols-1 gap-x-6 gap-y-8">
+                    {
+                        Object.entries(
+                            proofs
+                                .map(proof => ({
+                                    title: proof.frontmatter.title,
+                                    url: proof.url,
+                                    category: proof.frontmatter.category
+                                }))
+                                .reduce((groups, proof) => {
+                                    const group = groups[proof.category] || []
+                                    groups[proof.category] = [...group, proof]
+                                    return groups
+                                }, {})
+                        ).map(
+                            ([category, proofs]: [
+                                string,
+                                { title: string; url: string; category: string }[]
+                            ]) => (
+                                <div class="p-10 bg-white rounded-lg shadow">
+                                    <h4 class="mb-4 text-2xl font-medium text-yellow-700">
+                                        <a class="hover:underline" href="/">
+                                            {unsluggify(category)}
+                                        </a>
+                                    </h4>
+
+                                    <ul class="space-y-3">
+                                        {shuffle(proofs)
+                                            .slice(0, 3)
+                                            .map(proof => (
+                                                <li>
+                                                    <article>
+                                                        <a
+                                                            class="hover:underline text-stone-600"
+                                                            href={proof.url}
+                                                        >
+                                                            {proof.title}
+                                                        </a>
+                                                    </article>
+                                                </li>
+                                            ))}
+                                    </ul>
+
+                                    {proofs.length - 3 > 0 && (
+                                        <p class="mt-4">
+                                            <a
+                                                href="/"
+                                                class="font-light text-yellow-800 hover:underline"
+                                            >
+                                                {proofs.length - 3} more proofs
+                                            </a>
+                                        </p>
+                                    )}
+                                </div>
+                            )
+                        )
+                    }
+                </div>
+            </Container>
+        </div>
     </main>
 
     <!-- Footer -->

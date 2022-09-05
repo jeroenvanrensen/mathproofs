@@ -1,5 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro'
+import { unsluggify } from '../scripts'
 import Container from './../components/Container.astro'
 import Footer from './../components/Footer.astro'
 import Layout from './Layout.astro'
@@ -29,8 +30,8 @@ const { frontmatter } = Astro.props
                 ></path>
             </svg>
 
-            <a class="capitalize hover:underline" href="/">
-                {frontmatter.category}
+            <a class="hover:underline" href="/">
+                {unsluggify(frontmatter.category)}
             </a>
         </p>
 
