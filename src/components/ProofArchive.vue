@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from '@vue/reactivity'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { unsluggify } from '../scripts'
 
 const activeCategory = ref('')
@@ -65,6 +65,12 @@ const filteredProofs = computed(() => {
     }
 
     return proofs
+})
+
+watch(activeCategory, category => {
+    const url = new URL(window.location)
+    url.searchParams.set('category', category)
+    window.history.pushState({}, '', url)
 })
 
 const categories = computed(() => {
