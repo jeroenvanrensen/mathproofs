@@ -82,7 +82,10 @@ const featured = shuffle(proofs)[0]
                             ]) => (
                                 <div class="p-10 bg-white rounded-lg shadow">
                                     <h4 class="mb-4 text-2xl font-medium text-yellow-700">
-                                        <a class="hover:underline" href="/">
+                                        <a
+                                            class="hover:underline"
+                                            href={'/proofs?category=' + category}
+                                        >
                                             {unsluggify(category)}
                                         </a>
                                     </h4>
@@ -107,7 +110,7 @@ const featured = shuffle(proofs)[0]
                                     {proofs.length - 3 > 0 && (
                                         <p class="mt-4">
                                             <a
-                                                href="/"
+                                                href={'/proofs?category=' + category}
                                                 class="font-light text-yellow-800 hover:underline"
                                             >
                                                 {proofs.length - 3} more proofs

@@ -30,7 +30,7 @@ const { frontmatter } = Astro.props
                 ></path>
             </svg>
 
-            <a class="hover:underline" href="/">
+            <a class="hover:underline" href={'/proofs?category=' + frontmatter.category}>
                 {unsluggify(frontmatter.category)}
             </a>
         </p>
