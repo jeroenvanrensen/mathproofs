@@ -39,18 +39,23 @@
                 </a>
             </article>
 
-            <li class="-mt-12" v-if="proofs.length == 0">No results found.</li>
+            <li class="mt-12" v-if="filteredProofs.length == 0">No results found.</li>
         </ul>
     </main>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from '@vue/reactivity'
+import { onMounted } from 'vue'
 import { unsluggify } from '../scripts'
 
 const activeCategory = ref('')
 
 const props = defineProps(['proofs'])
+
+onMounted(() => {
+    activeCategory.value = new URLSearchParams(window.location.search).get('category')
+})
 
 const filteredProofs = computed(() => {
     let proofs = props.proofs
