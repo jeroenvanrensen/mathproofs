@@ -1,0 +1,32 @@
+---
+import Container from '../components/Container.astro'
+import Navbar from '../components/Navbar.astro'
+import ProofArchive from '../components/ProofArchive.vue'
+import Layout from '../layouts/Layout.astro'
+import { shuffle } from '../scripts'
+
+const proofs = shuffle(await Astro.glob('./proofs/*.md'))
+---
+
+<Layout
+    title="Proof archive - Math Proofs"
+    description="On this website you can find mathematical proofs for many famous theorems. These proofs are easy to read and understand."
+>
+    <Navbar />
+
+    <Container>
+        <h1 class="mb-8 text-4xl font-medium md:mb-4">Proof archive</h1>
+
+        <main>
+            <ProofArchive
+                proofs={proofs.map(proof => ({
+                    title: proof.frontmatter.title,
+                    description: proof.frontmatter.description,
+                    url: proof.url,
+                    category: proof.frontmatter.category
+                }))}
+                client:load
+            />
+        </main>
+    </Container>
+</Layout>

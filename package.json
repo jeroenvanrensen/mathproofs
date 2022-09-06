@@ -1,21 +1,23 @@
 {
-  "name": "@example/basics",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^1.1.5",
-    "rehype-katex": "^6.0.2",
-    "rehype-math": "^0.2.0"
-  },
-  "devDependencies": {
-    "@astrojs/tailwind": "^1.0.0",
-    "@tailwindcss/typography": "^0.5.7"
-  }
+    "name": "@example/basics",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "astro": "^1.1.5",
+        "rehype-katex": "^6.0.2",
+        "rehype-math": "^0.2.0"
+    },
+    "devDependencies": {
+        "@astrojs/tailwind": "^1.0.0",
+        "@astrojs/vue": "^1.0.0",
+        "@tailwindcss/typography": "^0.5.7",
+        "vue": "^3.2.38"
+    }
 }
